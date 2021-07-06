@@ -9,7 +9,7 @@ import { UtenteComponent } from './utente/utente.component';
 const routes: Routes = [
   { path:'', component: DashboardComponent, children:[
     { path: '', component: InizioComponent},
-    { path: 'utente', component: UtenteComponent},
+    { path: 'libri', component: UtenteComponent},
     { path: 'report', component: ReportComponent},
     { path: 'aggiungi-utente', component: AggiungiUtenteComponent},
   ]}

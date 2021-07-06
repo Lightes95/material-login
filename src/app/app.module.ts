@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './componenti/shared/shared.module';
-
+import { HttpClientModule } from '@angular/common/http';
 //componenti
 import { LoginComponent } from './componenti/login/login.component';
 
@@ -20,7 +20,8 @@ import { LoginComponent } from './componenti/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

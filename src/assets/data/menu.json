@@ -1,14 +1,11 @@
 [
+   
     {
-        "nome": "Dashboard",
-        "redirect": "/dashboard"
+        "nome": "elenco libri ",
+        "redirect": "/dashboard/libri"
     },
     {
-        "nome": "Utenti",
-        "redirect": "/dashboard/utente"
-    },
-    {
-        "nome": "Report",
+        "nome": "Prestiti",
         "redirect": "/dashboard/report"
     }
 ]

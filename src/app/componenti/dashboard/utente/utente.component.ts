@@ -3,8 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Username } from 'src/app/interface/username';
-import { UsernameService } from 'src/app/service/username.service';
+import {LibriService } from 'src/app/libri.service'
 
 export interface PeriodicElement {
   name: string;
@@ -20,23 +19,34 @@ export interface PeriodicElement {
 })
 export class UtenteComponent implements OnInit {
 
-  listaUsername:Username[] = [];
+  Book:any = [];
 
-  displayedColumns: string[] = ['username', 'nome', 'cognome', 'sesso','azioni',];
+  displayedColumns: string[] = ['id','titolo','luogo_edizione','anno_edizione','isbn','isbn13','copie','publisher_id','author_id','topic_id'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private _usernameService:UsernameService, private _snackbar: MatSnackBar) { }
+  constructor(private _snackbar: MatSnackBar,public LibriService: LibriService) { }
 
   ngOnInit(): void {
+    
     this.caricamentoUsername();
   }
-
+  
+  
+  fetchUsers() {
+    return this.LibriService.index().subscribe((data: {}) => {
+      this.Book = data;
+    })
+  }
   caricamentoUsername(){
-    this.listaUsername = this._usernameService.getUsername();
-    this.dataSource = new MatTableDataSource(this.listaUsername)
+     this.LibriService.index().subscribe((res: {}) => {
+      this.Book =res;
+      console.log(this.Book[0]);
+      this.dataSource = new MatTableDataSource(this.Book);
+    })
+   
   }
 
   ngAfterViewInit() {
@@ -52,8 +62,6 @@ export class UtenteComponent implements OnInit {
   eliminaUsername(index: number) {
     console.log(index)
 
-    this._usernameService.eliminaUsernameService(index);
-    this.caricamentoUsername();
 
     this._snackbar.open('Utente eliminato con successo','',{
       duration:1500,
